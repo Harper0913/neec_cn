@@ -57,7 +57,7 @@
     }
   });
 
-  /* Reveal on scroll */
+  /* Reveal on scroll — threshold 0 so tall blocks (e.g. pub-list) still appear */
   const reveals = document.querySelectorAll(".reveal");
   if (reveals.length && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -69,7 +69,7 @@
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -24px 0px" }
     );
     reveals.forEach((el) => io.observe(el));
   } else {
