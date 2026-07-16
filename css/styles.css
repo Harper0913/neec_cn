@@ -1382,9 +1382,9 @@ main.has-anchor-nav > .pub-filters-sticky {
 }
 
 .avatar-sm {
-  aspect-ratio: 1;
-  width: 72%;
-  max-width: 180px;
+  aspect-ratio: 3 / 4;
+  width: 88%;
+  max-width: 200px;
 }
 
 .person-info h2 {
@@ -2125,8 +2125,8 @@ main.has-anchor-nav > .pub-filters-sticky {
   }
 
   .avatar-sm {
-    width: 56%;
-    max-width: 140px;
+    width: 72%;
+    max-width: 160px;
     margin-left: auto;
     margin-right: auto;
   }
