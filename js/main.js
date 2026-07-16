@@ -21,20 +21,26 @@
 
   /* Mobile nav */
   if (toggle && navList) {
-    toggle.addEventListener("click", () => {
-      const open = toggle.classList.toggle("is-open");
+    const setOpen = (open) => {
+      toggle.classList.toggle("is-open", open);
       navList.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
       document.body.style.overflow = open ? "hidden" : "";
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(!toggle.classList.contains("is-open"));
     });
 
     navList.querySelectorAll(".nav-link").forEach((link) => {
-      link.addEventListener("click", () => {
-        toggle.classList.remove("is-open");
-        navList.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && toggle.classList.contains("is-open")) {
+        setOpen(false);
+      }
     });
   }
 
