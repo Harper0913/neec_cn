@@ -41,6 +41,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -52,11 +54,26 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
   padding-bottom: var(--footer-h);
+  min-width: 0;
 }
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
+}
+
+/* Prevent long words / citations from forcing horizontal scroll */
+p,
+li,
+dd,
+figcaption,
+.pub-citation,
+.research-refs li,
+.block-body,
+.section-desc {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 a {
@@ -123,7 +140,8 @@ ol {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
   z-index: 2;
 }
 
@@ -146,12 +164,13 @@ ol {
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: clamp(14px, 2.4vw, 18px);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--white);
   transition: color 0.3s;
   line-height: 1.25;
+  min-width: 0;
 }
 
 .brand-name span {
@@ -258,9 +277,9 @@ ol {
   inset: 0;
   background-color: #fff;
   background-image: url("../photos/home.jpg");
-  background-position: center 25%;
+  background-position: center 28%;
   background-repeat: no-repeat;
-  background-size: 65% auto;
+  background-size: min(780px, 68%) auto;
   z-index: 0;
 }
 
@@ -906,6 +925,8 @@ a.dir-cell:hover h3 {
   width: 100%;
   max-width: 860px;
   height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   display: block;
   margin: 0 auto;
   border: 1px solid var(--border);
@@ -1195,6 +1216,8 @@ main.has-anchor-nav > .pub-filters-sticky {
   width: 100%;
   max-width: 880px;
   height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -1226,6 +1249,8 @@ main.has-anchor-nav > .pub-filters-sticky {
 .facility-gallery-item img {
   width: 100%;
   height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   display: block;
   margin-bottom: 12px;
 }
@@ -1619,6 +1644,8 @@ main.has-anchor-nav > .pub-filters-sticky {
 .map-embed img {
   width: 100%;
   height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -1707,6 +1734,17 @@ main.has-anchor-nav > .pub-filters-sticky {
 
 /* ---------- Responsive ---------- */
 
+@media (max-width: 1100px) {
+  .nav-link {
+    padding: 8px 8px;
+    font-size: 15px;
+  }
+
+  .nav-inner {
+    gap: 12px;
+  }
+}
+
 @media (max-width: 960px) {
   .nav-toggle {
     display: flex;
@@ -1723,6 +1761,9 @@ main.has-anchor-nav > .pub-filters-sticky {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.35s, visibility 0.35s;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 80px 20px 40px;
   }
 
   .nav-list.is-open {
@@ -1753,6 +1794,12 @@ main.has-anchor-nav > .pub-filters-sticky {
     gap: 36px;
   }
 
+  .people-lead .avatar {
+    max-width: 220px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
   .mentor-bar-inner {
     flex-wrap: wrap;
     gap: 14px 16px;
@@ -1771,6 +1818,10 @@ main.has-anchor-nav > .pub-filters-sticky {
     grid-template-columns: 1fr;
   }
 
+  .dir-cell {
+    padding: 28px 24px;
+  }
+
   .facility-grid,
   .software-grid,
   .facility-gallery {
@@ -1783,6 +1834,7 @@ main.has-anchor-nav > .pub-filters-sticky {
 
   .focus-item {
     grid-template-columns: 48px 1fr;
+    gap: 16px;
   }
 
   .course-item {
@@ -1794,26 +1846,61 @@ main.has-anchor-nav > .pub-filters-sticky {
     grid-template-columns: 1fr;
     gap: 4px;
   }
+
+  .timeline-term {
+    white-space: normal;
+  }
+
+  .research-detail {
+    padding: 44px 0;
+  }
+
+  .job-item {
+    padding: 24px 20px;
+  }
+
+  .cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-bg {
+    background-size: min(640px, 78%) auto;
+  }
 }
 
 @media (max-width: 600px) {
   :root {
-    --footer-h: 68px;
+    --footer-h: 72px;
+    --nav-h: 64px;
   }
 
   .section {
-    padding: 64px 20px;
+    padding: 56px 16px;
+  }
+
+  .section-head {
+    margin-bottom: 32px;
   }
 
   .pub-filters-sticky {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 12px 20px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 12px 16px;
   }
 
   main.has-anchor-nav > .pub-filters-sticky {
     margin: 0;
-    padding: 12px 20px;
+    padding: 12px 16px;
+  }
+
+  .pub-filters {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    padding: 7px 12px;
+    font-size: 12px;
   }
 
   .pub-year-group,
@@ -1824,30 +1911,40 @@ main.has-anchor-nav > .pub-filters-sticky {
   }
 
   .focus-panel {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 28px 20px 64px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 24px 16px 56px;
   }
 
   .section-compact {
-    padding: 28px 20px;
+    padding: 24px 16px;
   }
 
   body:not(.page-home) main > .section:first-child {
-    padding-top: calc(var(--nav-h) + 32px);
+    padding-top: calc(var(--nav-h) + 28px);
   }
 
   .hero {
-    min-height: 56vh;
+    min-height: min(52vh, 520px);
     padding-top: var(--nav-h);
   }
 
   .hero-bg {
-    background-size: 88% auto;
+    background-size: min(100%, 92vw) auto;
+    background-position: center 18%;
   }
 
   .hero-content {
-    padding: 20px 20px 32px;
+    padding: 16px 16px 28px;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .facility-grid,
@@ -1857,11 +1954,171 @@ main.has-anchor-nav > .pub-filters-sticky {
     grid-template-columns: 1fr;
   }
 
+  .facility-gallery {
+    gap: 16px;
+  }
+
+  .facility-gallery-item {
+    padding: 10px;
+  }
+
+  .facility-entry {
+    padding: 28px 0;
+  }
+
   .nav-inner {
-    padding: 0 20px;
+    padding: 0 16px;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    font-size: 9px;
+  }
+
+  .brand-name {
+    font-size: 14px;
   }
 
   .brand-name span {
     display: none;
+  }
+
+  .dir-cell {
+    padding: 24px 18px;
+  }
+
+  .research-detail {
+    padding: 36px 0;
+  }
+
+  .research-figure,
+  .facility-figure {
+    margin-bottom: 20px;
+  }
+
+  .research-refs {
+    padding-left: 1em;
+    max-width: 100%;
+  }
+
+  .research-refs li,
+  .pub-citation {
+    font-size: 0.86rem;
+  }
+
+  .pub-pdf {
+    display: inline;
+    white-space: normal;
+    margin-left: 6px;
+  }
+
+  .people-lead {
+    gap: 24px;
+    margin-bottom: 48px;
+    padding-bottom: 36px;
+  }
+
+  .people-lead .avatar {
+    max-width: 180px;
+  }
+
+  .avatar-sm {
+    width: 56%;
+    max-width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .people-card {
+    text-align: center;
+  }
+
+  .people-card .avatar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .person-info h2 {
+    font-size: 1.35rem;
+  }
+
+  .person-info .person-role {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+  }
+
+  .job-item {
+    padding: 20px 16px;
+  }
+
+  .job-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .contact-grid {
+    gap: 36px;
+  }
+
+  .map-embed {
+    margin-top: 40px;
+  }
+
+  .cta-band {
+    padding: 48px 16px;
+  }
+
+  .site-footer {
+    padding: 10px 16px;
+  }
+
+  .footer-simple {
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .mentor-bar-inner {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mentor-bar-portrait {
+    width: 64px;
+    height: 64px;
+  }
+
+  .mentor-bar-text strong {
+    font-size: 1.3rem;
+  }
+
+  .intro-aside {
+    padding: 24px 20px;
+  }
+
+  .intro-aside-text {
+    font-size: 1.15rem;
+  }
+
+  .placeholder {
+    padding: 32px 20px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .brand-name {
+    font-size: 12.5px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .section {
+    padding: 48px 14px;
   }
 }
