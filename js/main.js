@@ -4,8 +4,8 @@
   const navList = document.querySelector(".nav-list");
   const isHome = document.body.classList.contains("page-home");
 
-  /* Solid header on inner pages */
-  if (!isHome && header) {
+  /* Solid header on all pages (home keeps dark text over light bar) */
+  if (header) {
     header.classList.add("is-solid");
   }
 

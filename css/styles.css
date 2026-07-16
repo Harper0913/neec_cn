@@ -352,24 +352,23 @@ ol {
   background: var(--pku-red-wash);
 }
 
-/* Homepage nav: light hero, dark text from the start */
-.page-home .site-header {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 var(--border);
-}
-
-.page-home .brand-name,
-.page-home .nav-link {
+/* Homepage: same solid nav bar as other pages; text stays dark (not white) */
+.page-home .site-header.is-solid .brand-name,
+.page-home .site-header.is-solid .nav-link,
+.page-home .site-header.is-scrolled .brand-name,
+.page-home .site-header.is-scrolled .nav-link {
   color: var(--ink);
 }
 
-.page-home .nav-link:hover,
-.page-home .nav-link.is-active {
+.page-home .site-header.is-solid .nav-link:hover,
+.page-home .site-header.is-solid .nav-link.is-active,
+.page-home .site-header.is-scrolled .nav-link:hover,
+.page-home .site-header.is-scrolled .nav-link.is-active {
   color: var(--pku-red);
 }
 
-.page-home .nav-toggle span {
+.page-home .site-header.is-solid .nav-toggle span,
+.page-home .site-header.is-scrolled .nav-toggle span {
   background: var(--ink);
 }
 
@@ -1848,14 +1847,20 @@ main.has-anchor-nav > .pub-filters-sticky {
   }
 
   .site-header.is-scrolled .nav-link,
-  .site-header.is-solid .nav-link {
+  .site-header.is-solid .nav-link,
+  .page-home .site-header.is-solid .nav-link,
+  .page-home .site-header.is-scrolled .nav-link {
     color: rgba(255, 255, 255, 0.9);
   }
 
   .site-header.is-scrolled .nav-link.is-active,
   .site-header.is-solid .nav-link.is-active,
   .site-header.is-scrolled .nav-link:hover,
-  .site-header.is-solid .nav-link:hover {
+  .site-header.is-solid .nav-link:hover,
+  .page-home .site-header.is-solid .nav-link.is-active,
+  .page-home .site-header.is-scrolled .nav-link.is-active,
+  .page-home .site-header.is-solid .nav-link:hover,
+  .page-home .site-header.is-scrolled .nav-link:hover {
     color: #fff;
   }
 
