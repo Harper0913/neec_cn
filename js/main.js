@@ -44,25 +44,18 @@
     });
   }
 
-  /* Active nav link (desktop red underline; mobile keeps its own menu style) */
-  const path = decodeURIComponent(
-    location.pathname.split("/").filter(Boolean).pop() || ""
-  );
+  /* Active nav link */
+  const path = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-link").forEach((link) => {
-    link.classList.remove("is-active");
-    const href = (link.getAttribute("href") || "").split("/").pop();
-    const matchHome = isHome && href === "index.html";
-    const matchPage = !isHome && href === path;
-    if (matchHome || matchPage) {
+    const href = link.getAttribute("href");
+    if (
+      href === path ||
+      (path === "" && href === "index.html") ||
+      (path === "index.html" && href === "index.html")
+    ) {
       link.classList.add("is-active");
     }
   });
-  /* Homepage fallback if path matching failed */
-  if (isHome && !document.querySelector(".nav-link.is-active")) {
-    document
-      .querySelector('.nav-link[href="index.html"]')
-      ?.classList.add("is-active");
-  }
 
   /* Reveal on scroll — threshold 0 so tall blocks (e.g. pub-list) still appear */
   const reveals = document.querySelectorAll(".reveal");
