@@ -352,10 +352,25 @@ ol {
 
 /* Desktop: current page — red + underline */
 @media (min-width: 961px) {
+  /* Homepage desktop nav: default text stays dark */
+  .page-home .site-header.is-solid .brand-name,
+  .page-home .site-header.is-solid .nav-link,
+  .page-home .site-header.is-scrolled .brand-name,
+  .page-home .site-header.is-scrolled .nav-link {
+    color: var(--ink);
+  }
+
+  .page-home .site-header.is-solid .nav-toggle span,
+  .page-home .site-header.is-scrolled .nav-toggle span {
+    background: var(--ink);
+  }
+
   .site-header.is-solid .nav-link.is-active,
   .site-header.is-scrolled .nav-link.is-active,
   .page-home .site-header.is-solid .nav-link.is-active,
-  .page-home .site-header.is-scrolled .nav-link.is-active {
+  .page-home .site-header.is-scrolled .nav-link.is-active,
+  .page-home .site-header.is-solid .nav-link:hover,
+  .page-home .site-header.is-scrolled .nav-link:hover {
     color: var(--pku-red);
   }
 
@@ -366,26 +381,6 @@ ol {
     transform: scaleX(1);
     background: var(--pku-red);
     opacity: 1;
-  }
-
-  /* Homepage desktop nav: text stays dark (not white) */
-  .page-home .site-header.is-solid .brand-name,
-  .page-home .site-header.is-solid .nav-link,
-  .page-home .site-header.is-scrolled .brand-name,
-  .page-home .site-header.is-scrolled .nav-link {
-    color: var(--ink);
-  }
-
-  .page-home .site-header.is-solid .nav-link:hover,
-  .page-home .site-header.is-solid .nav-link.is-active,
-  .page-home .site-header.is-scrolled .nav-link:hover,
-  .page-home .site-header.is-scrolled .nav-link.is-active {
-    color: var(--pku-red);
-  }
-
-  .page-home .site-header.is-solid .nav-toggle span,
-  .page-home .site-header.is-scrolled .nav-toggle span {
-    background: var(--ink);
   }
 }
 

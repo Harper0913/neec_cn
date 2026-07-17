@@ -45,15 +45,14 @@
   }
 
   /* Active nav link (desktop red underline; mobile keeps its own menu style) */
-  const path =
-    decodeURIComponent(location.pathname.split("/").pop() || "") ||
-    "index.html";
+  const path = decodeURIComponent(
+    location.pathname.split("/").filter(Boolean).pop() || ""
+  );
+  const homeActive =
+    isHome || path === "" || path === "index.html" || path === "index.htm";
   document.querySelectorAll(".nav-link").forEach((link) => {
     const href = (link.getAttribute("href") || "").split("/").pop();
-    if (
-      href === path ||
-      ((path === "" || path === "index.html") && href === "index.html")
-    ) {
+    if ((homeActive && href === "index.html") || (!homeActive && href === path)) {
       link.classList.add("is-active");
     }
   });
