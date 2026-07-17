@@ -107,16 +107,14 @@ ol {
 }
 
 .site-header.is-scrolled .brand-name,
+.site-header.is-scrolled .nav-link,
 .site-header.is-solid .brand-name,
-.site-header.is-scrolled .nav-link:not(.is-active),
-.site-header.is-solid .nav-link:not(.is-active) {
+.site-header.is-solid .nav-link {
   color: var(--ink);
 }
 
 .site-header.is-scrolled .nav-link:hover,
-.site-header.is-solid .nav-link:hover,
-.site-header.is-scrolled .nav-link.is-active,
-.site-header.is-solid .nav-link.is-active {
+.site-header.is-solid .nav-link:hover {
   color: var(--pku-red);
 }
 
@@ -354,11 +352,11 @@ ol {
 
 /* Desktop: current page — red + underline */
 @media (min-width: 961px) {
-  /* Homepage: inactive links stay dark; active must not inherit this */
+  /* Homepage desktop nav: default text stays dark */
   .page-home .site-header.is-solid .brand-name,
+  .page-home .site-header.is-solid .nav-link,
   .page-home .site-header.is-scrolled .brand-name,
-  .page-home .site-header.is-solid .nav-link:not(.is-active),
-  .page-home .site-header.is-scrolled .nav-link:not(.is-active) {
+  .page-home .site-header.is-scrolled .nav-link {
     color: var(--ink);
   }
 
@@ -367,14 +365,19 @@ ol {
     background: var(--ink);
   }
 
-  .site-header .nav-link.is-active,
-  .page-home .site-header .nav-link.is-active,
-  .page-home .site-header .nav-link:hover {
+  .site-header.is-solid .nav-link.is-active,
+  .site-header.is-scrolled .nav-link.is-active,
+  .page-home .site-header.is-solid .nav-link.is-active,
+  .page-home .site-header.is-scrolled .nav-link.is-active,
+  .page-home .site-header.is-solid .nav-link:hover,
+  .page-home .site-header.is-scrolled .nav-link:hover {
     color: var(--pku-red);
   }
 
-  .site-header .nav-link.is-active::after,
-  .page-home .site-header .nav-link.is-active::after {
+  .site-header.is-solid .nav-link.is-active::after,
+  .site-header.is-scrolled .nav-link.is-active::after,
+  .page-home .site-header.is-solid .nav-link.is-active::after,
+  .page-home .site-header.is-scrolled .nav-link.is-active::after {
     transform: scaleX(1);
     background: var(--pku-red);
     opacity: 1;
