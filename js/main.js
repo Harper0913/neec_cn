@@ -44,14 +44,19 @@
     });
   }
 
-  /* Active nav link */
-  const path = location.pathname.split("/").pop() || "index.html";
+  /* Active nav link (desktop red underline; mobile keeps its own menu style) */
+  const path = decodeURIComponent(
+    location.pathname.split("/").filter(Boolean).pop() || ""
+  );
+  const homeActive =
+    isHome || path === "" || path === "index.html" || path === "index";
   document.querySelectorAll(".nav-link").forEach((link) => {
-    const href = link.getAttribute("href");
+    const href = (link.getAttribute("href") || "").split("/").pop() || "";
+    const hrefBase = href.replace(/\.html$/i, "") || "index";
+    const pathBase = path.replace(/\.html$/i, "") || "index";
     if (
-      href === path ||
-      (path === "" && href === "index.html") ||
-      (path === "index.html" && href === "index.html")
+      (homeActive && href === "index.html") ||
+      (!homeActive && (href === path || hrefBase === pathBase))
     ) {
       link.classList.add("is-active");
     }
