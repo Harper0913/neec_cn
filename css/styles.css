@@ -107,15 +107,15 @@ ol {
 }
 
 .site-header.is-scrolled .brand-name,
+.site-header.is-scrolled .nav-link,
 .site-header.is-solid .brand-name,
-.site-header.is-scrolled .nav-link:not(.is-active),
-.site-header.is-solid .nav-link:not(.is-active) {
+.site-header.is-solid .nav-link {
   color: var(--ink);
 }
 
 .site-header.is-scrolled .nav-link:hover,
-.site-header.is-solid .nav-link:hover,
 .site-header.is-scrolled .nav-link.is-active,
+.site-header.is-solid .nav-link:hover,
 .site-header.is-solid .nav-link.is-active {
   color: var(--pku-red);
 }
@@ -352,12 +352,14 @@ ol {
   background: var(--pku-red-wash);
 }
 
-/* Desktop nav: current page red + underline; homepage default text stays dark */
+/* Desktop only: current page red + underline (mobile menu styles unchanged) */
 @media (min-width: 961px) {
   .page-home .site-header.is-solid .brand-name,
   .page-home .site-header.is-scrolled .brand-name,
   .page-home .site-header.is-solid .nav-link:not(.is-active),
-  .page-home .site-header.is-scrolled .nav-link:not(.is-active) {
+  .page-home .site-header.is-scrolled .nav-link:not(.is-active),
+  .site-header.is-solid .nav-link:not(.is-active),
+  .site-header.is-scrolled .nav-link:not(.is-active) {
     color: var(--ink);
   }
 
@@ -368,6 +370,8 @@ ol {
 
   .site-header .nav-link.is-active,
   .site-header .nav-link.is-active:hover,
+  .site-header.is-solid .nav-link.is-active,
+  .site-header.is-scrolled .nav-link.is-active,
   .page-home .site-header.is-solid .nav-link.is-active,
   .page-home .site-header.is-scrolled .nav-link.is-active,
   .page-home .site-header.is-solid .nav-link:hover,
