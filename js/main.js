@@ -48,14 +48,21 @@
   const path = decodeURIComponent(
     location.pathname.split("/").filter(Boolean).pop() || ""
   );
-  const homeActive =
-    isHome || path === "" || path === "index.html" || path === "index.htm";
   document.querySelectorAll(".nav-link").forEach((link) => {
+    link.classList.remove("is-active");
     const href = (link.getAttribute("href") || "").split("/").pop();
-    if ((homeActive && href === "index.html") || (!homeActive && href === path)) {
+    const matchHome = isHome && href === "index.html";
+    const matchPage = !isHome && href === path;
+    if (matchHome || matchPage) {
       link.classList.add("is-active");
     }
   });
+  /* Homepage fallback if path matching failed */
+  if (isHome && !document.querySelector(".nav-link.is-active")) {
+    document
+      .querySelector('.nav-link[href="index.html"]')
+      ?.classList.add("is-active");
+  }
 
   /* Reveal on scroll — threshold 0 so tall blocks (e.g. pub-list) still appear */
   const reveals = document.querySelectorAll(".reveal");
