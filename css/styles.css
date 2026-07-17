@@ -114,9 +114,7 @@ ol {
 }
 
 .site-header.is-scrolled .nav-link:hover,
-.site-header.is-scrolled .nav-link.is-active,
-.site-header.is-solid .nav-link:hover,
-.site-header.is-solid .nav-link.is-active {
+.site-header.is-solid .nav-link:hover {
   color: var(--pku-red);
 }
 
@@ -352,8 +350,25 @@ ol {
   background: var(--pku-red-wash);
 }
 
-/* Homepage desktop nav: same bar as other pages; text stays dark (not white) */
+/* Desktop: current page — red + underline */
 @media (min-width: 961px) {
+  .site-header.is-solid .nav-link.is-active,
+  .site-header.is-scrolled .nav-link.is-active,
+  .page-home .site-header.is-solid .nav-link.is-active,
+  .page-home .site-header.is-scrolled .nav-link.is-active {
+    color: var(--pku-red);
+  }
+
+  .site-header.is-solid .nav-link.is-active::after,
+  .site-header.is-scrolled .nav-link.is-active::after,
+  .page-home .site-header.is-solid .nav-link.is-active::after,
+  .page-home .site-header.is-scrolled .nav-link.is-active::after {
+    transform: scaleX(1);
+    background: var(--pku-red);
+    opacity: 1;
+  }
+
+  /* Homepage desktop nav: text stays dark (not white) */
   .page-home .site-header.is-solid .brand-name,
   .page-home .site-header.is-solid .nav-link,
   .page-home .site-header.is-scrolled .brand-name,
